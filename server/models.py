@@ -41,11 +41,11 @@ class Product(db.Model, SerializerMixin):
     price = db.Column(db.Float)
     category = db.Column(db.String)
     count = db.Column(db.Integer)
+    farmer_id = db.Column(db.Integer, db.ForeignKey('Farmer.id'))
 
     #relationships
     reviews = db.relationship('Review', backref='product')
     cart_items = db.relationship('CartItem', backref='product')
-    farmer_id = db.Column(db.Integer, db.ForeignKey('Farmer.id'))
 
     #validations
 
@@ -56,10 +56,10 @@ class Review(db.Model, SerializerMixin):
     rating = db.Column(db.Integer)
     created_at = db.Column(db.DateTime)
     updated_at = db.Column(db.DateTime)
-
-    #relationships
     user_id = db.Column(db.Integer, db.ForeignKey('User.id'))
     product_id = db.Column(db.Integer, db.ForeignKey('Product.id'))
+
+    #relationships
 
     #validations
 
@@ -74,10 +74,10 @@ class Cart(db.Model, SerializerMixin):
     __tablename__ = 'Cart'
     id = db.Column(db.Integer, primary_key=True)
     cart_total = db.Column(db.Float)
+    user_id = db.Column(db.Integer, db.ForeignKey('User.id'))
 
     #relationships
     cart_items = db.relationship('CartItem', backref='cart')
-    user_id = db.Column(db.Integer, db.ForeignKey('User.id'))
 
     #validations
 
@@ -85,10 +85,10 @@ class CartItem(db.Model, SerializerMixin):
     __tablename__ = 'CartItem'
     id = db.Column(db.Integer, primary_key=True)
     product_quantity = db.Column(db.Integer)
-
-    #relationships
     cart_id = db.Column(db.Integer, db.ForeignKey('Cart.id'))
     product_id = db.Column(db.Integer, db.ForeignKey('Product.id'))
+
+    #relationships
 
     #validations
 
@@ -98,9 +98,9 @@ class Order(db.Model, SerializerMixin):
     exp_delivery_date = db.Column(db.DateTime)
     created_at = db.Column(db.DateTime)
     delivery_address = db.Column(db.String)
-
-    #relationships
     user_id = db.Column(db.Integer, db.ForeignKey('User.id'))
     cart_id = db.Column(db.Integer, db.ForeignKey('Cart.id'))
+
+    #relationships
 
     #validations
