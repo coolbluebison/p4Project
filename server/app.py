@@ -9,7 +9,7 @@ from flask_restful import Resource
 # Local imports
 from config import app, db, api
 # Add your model imports
-from models import User, Farmer, Review, Cart, CartItem, Order
+from models import User, Product, Farmer, Review, Cart, CartItem, Order
 
 
 # Views go here!
