@@ -6,47 +6,58 @@ from config import db
 
 # Models go here!
 
-class Farmer():
-    __tablename__ = 'farmers'
+class User:
+    __tablename__ = 'User'
+    id = Column(Integer, primary_key=True)
+    username = Column(String)
+    email = Column(String)
+    password = Column(String)
+    user_type = Column(String)
+    reviews = relationship('Review', backref='user')
+    cart = relationship('Cart', uselist=False, backref='user')
+    orders = relationship('Order', backref='user')
 
-    id = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String)
-    description = db.Column(db.String)
-    image_link = db.Column(db.String)
-    category = db.Column(db.String)
-    contact_info = db.Column(db.String)
+    #relationships
 
-    # relationships
+    #validations
 
-    # validations
+class Farmer:
+    __tablename__ = 'Farmer'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    address = Column(String)
+    products = relationship('Product', backref='farmer')
 
-class Product():
-    __tablename__ = 'products'
+    #relationships
 
-    id = db.Column(db.Integer, primary_key= True)
-    name = db.Column(db.String)
-    price = db.Column(db.Float)
-    image = db.Column(db.String)
-    count = db.Column(db.Integer)
+    #validations
 
-    # relationships
-    # every product needs to be tied to a Farmer
-    # aka farmer_id
-    # every product needs to be tied to a review if it exists
-    # aka review_id
+class Product:
+    __tablename__ = 'Product'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    price = Column(Float)
+    category = Column(String)
+    farmer_id = Column(Integer, ForeignKey('Farmer.id'))
+    count = Column(Integer)
+    reviews = relationship('Review', backref='product')
+    cart_items = relationship('CartItem', backref='product')
 
-    # validations
+    #relationships
 
-class Review():
-    __tablename__  = 'reviews'
+    #validations
 
-    id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.String)
-    rating = db.Column(db.Integer)
+class Review:
+    __tablename__ = 'Review'
+    id = Column(Integer, primary_key=True)
+    content = Column(String)
+    rating = Column(Integer)
+    user_id = Column(Integer, ForeignKey('User.id'))
+    product_id = Column(Integer, ForeignKey('Product.id'))
+    created_at = Column(DateTime)
+    updated_at = Column(DateTime)
 
-    # relationships
-    # each review will need to be connected to a product
-    # each review will need to be connected to a farmer
+    #relationships
 
     #validations
 
@@ -57,19 +68,37 @@ class Review():
         else:
             raise ValueError('Rating must be between 1 and 5')
 
+class Cart:
+    __tablename__ = 'Cart'
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('User.id'))
+    cart_total = Column(Float)
+    cart_items = relationship('CartItem', backref='cart')
 
+    #relationships
 
+    #validations
 
+class CartItem:
+    __tablename__ = 'CartItem'
+    id = Column(Integer, primary_key=True)
+    cart_id = Column(Integer, ForeignKey('Cart.id'))
+    product_id = Column(Integer, ForeignKey('Product.id'))
+    product_quantity = Column(Integer)
 
+    #relationships
 
+    #validations
 
+class Order:
+    __tablename__ = 'Order'
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('User.id'))
+    cart_id = Column(Integer, ForeignKey('Cart.id'))
+    exp_delivery_date = Column(DateTime)
+    created_at = Column(DateTime)
+    delivery_address = Column(String)
 
+    # relationships
 
-
-
-
-
-
-
-
-
+    #validations
