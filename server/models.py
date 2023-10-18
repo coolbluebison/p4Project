@@ -1,4 +1,4 @@
-from sqlalchemy.orm import validates
+from sqlalchemy.orm import validates, Serializer
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.associationproxy import association_proxy
 
@@ -17,11 +17,14 @@ class User(db.Model, SerializerMixin):
     user_type = db.Column(db.String)
 
     #relationships
-    reviews = db.relationship('Review', backref='user')
-    cart = db.relationship('Cart', uselist=False, backref='user')
-    orders = db.relationship('Order', backref='user')
+    reviews = db.relationship('Review', backref='user', cascade='all, delete-orphan')
+    cart = db.relationship('Cart', uselist=False, backref='user', cascade='all, delete-orphan')
+    orders = db.relationship('Order', backref='user', cascade='all, delete-orphan')
 
     #validations
+
+    #serializers
+    serialize_rules = ('-reviews', '-cart', '-orders')
 
 class Farmer(db.Model, SerializerMixin):
     __tablename__ = 'Farmer'
@@ -30,9 +33,12 @@ class Farmer(db.Model, SerializerMixin):
     address = db.Column(db.String)
 
     #relationships
-    products = db.relationship('Product', backref='farmer')
+    products = db.relationship('Product', backref='farmer', cascade='all, delete-orphan')
 
     #validations
+
+    #serializers
+    serialize_rules = ('-products')
 
 class Product(db.Model, SerializerMixin):
     __tablename__ = 'Product'
@@ -44,10 +50,13 @@ class Product(db.Model, SerializerMixin):
     farmer_id = db.Column(db.Integer, db.ForeignKey('Farmer.id'))
 
     #relationships
-    reviews = db.relationship('Review', backref='product')
-    cart_items = db.relationship('CartItem', backref='product')
+    reviews = db.relationship('Review', backref='product', cascade='all, delete-orphan')
+    cart_items = db.relationship('CartItem', backref='product', cascade='all, delete-orphan')
 
     #validations
+
+    #serializers
+    serialize_rules = ('-farmer', '-reviews', '-cart_items')
 
 class Review(db.Model, SerializerMixin):
     __tablename__ = 'Review'
@@ -70,6 +79,9 @@ class Review(db.Model, SerializerMixin):
         else:
             raise ValueError('Rating must be between 1 and 5')
 
+    #serializers
+    serialize_rules = ('-user', '-product')
+
 class Cart(db.Model, SerializerMixin):
     __tablename__ = 'Cart'
     id = db.Column(db.Integer, primary_key=True)
@@ -77,9 +89,12 @@ class Cart(db.Model, SerializerMixin):
     user_id = db.Column(db.Integer, db.ForeignKey('User.id'))
 
     #relationships
-    cart_items = db.relationship('CartItem', backref='cart')
+    cart_items = db.relationship('CartItem', backref='cart', cascade='all, delete-orphan')
 
     #validations
+
+    #serializers
+    serialize_rules = ('-user', '-cart_items')
 
 class CartItem(db.Model, SerializerMixin):
     __tablename__ = 'CartItem'
@@ -91,6 +106,9 @@ class CartItem(db.Model, SerializerMixin):
     #relationships
 
     #validations
+
+    #serializers
+    serialize_rules = ('-cart', '-product')
 
 class Order(db.Model, SerializerMixin):
     __tablename__ = 'Order'
@@ -104,3 +122,6 @@ class Order(db.Model, SerializerMixin):
     #relationships
 
     #validations
+
+    #serializers
+    serialize_rules = ('-user', '-cart')
