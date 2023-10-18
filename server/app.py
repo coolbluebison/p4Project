@@ -9,7 +9,7 @@ from flask_restful import Resource
 # Local imports
 from config import app, db, api
 # Add your model imports
-from models import User, Farmer, Review, Cart, CartItem, Order
+from models import User, Farmer, Review, Cart, CartItem, Order, Product
 
 
 # Views go here!
@@ -32,7 +32,7 @@ class Login(Resource):
 
 api.add_resource(Login, '/login')
 
-def CheckSession(Resource):
+class CheckSession(Resource):
     def get(self):
         user = User.query.filter(User.id == session.get('user_id')).first()
         if user:
@@ -89,7 +89,7 @@ class UserNorm(Resource):
         except:
             raise Exception('There was an error while creating the user')
 
-api.add_resouce(UserNorm, '/user_table')
+api.add_resource(UserNorm, '/user_table')
 
 class UserById(Resource):
     
