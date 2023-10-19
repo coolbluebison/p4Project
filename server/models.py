@@ -1,52 +1,74 @@
+from sqlalchemy.orm import validates, Serializer
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.associationproxy import association_proxy
 
 from config import db
 
 
+
 # Models go here!
 
-class Farmer():
-    __tablename__ = 'farmers'
+class User(db.Model, SerializerMixin):
+    __tablename__ = 'User'
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String)
+    email = db.Column(db.String)
+    password = db.Column(db.String)
+    user_type = db.Column(db.String)
 
-    id = db.Column(db.Integer, primary_key = True)
+    #relationships
+    reviews = db.relationship('Review', backref='user', cascade='all, delete-orphan')
+    cart = db.relationship('Cart', uselist=False, backref='user', cascade='all, delete-orphan')
+    orders = db.relationship('Order', backref='user', cascade='all, delete-orphan')
+
+    #validations
+
+    #serializers
+    serialize_rules = ('-reviews', '-cart', '-orders')
+
+class Farmer(db.Model, SerializerMixin):
+    __tablename__ = 'Farmer'
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
-    description = db.Column(db.String)
-    image_link = db.Column(db.String)
-    category = db.Column(db.String)
-    contact_info = db.Column(db.String)
+    address = db.Column(db.String)
 
-    # relationships
+    #relationships
+    products = db.relationship('Product', backref='farmer', cascade='all, delete-orphan')
 
-    # validations
+    #validations
 
-class Product():
-    __tablename__ = 'products'
+    #serializers
+    serialize_rules = ('-products')
 
-    id = db.Column(db.Integer, primary_key= True)
+class Product(db.Model, SerializerMixin):
+    __tablename__ = 'Product'
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     price = db.Column(db.Float)
-    image = db.Column(db.String)
+    category = db.Column(db.String)
     count = db.Column(db.Integer)
+    farmer_id = db.Column(db.Integer, db.ForeignKey('Farmer.id'))
 
-    # relationships
-    # every product needs to be tied to a Farmer
-    # aka farmer_id
-    # every product needs to be tied to a review if it exists
-    # aka review_id
+    #relationships
+    reviews = db.relationship('Review', backref='product', cascade='all, delete-orphan')
+    cart_items = db.relationship('CartItem', backref='product', cascade='all, delete-orphan')
 
-    # validations
+    #validations
 
-class Review():
-    __tablename__  = 'reviews'
+    #serializers
+    serialize_rules = ('-farmer', '-reviews', '-cart_items')
 
+class Review(db.Model, SerializerMixin):
+    __tablename__ = 'Review'
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String)
     rating = db.Column(db.Integer)
+    created_at = db.Column(db.DateTime)
+    updated_at = db.Column(db.DateTime)
+    user_id = db.Column(db.Integer, db.ForeignKey('User.id'))
+    product_id = db.Column(db.Integer, db.ForeignKey('Product.id'))
 
-    # relationships
-    # each review will need to be connected to a product
-    # each review will need to be connected to a farmer
+    #relationships
 
     #validations
 
@@ -57,19 +79,49 @@ class Review():
         else:
             raise ValueError('Rating must be between 1 and 5')
 
+    #serializers
+    serialize_rules = ('-user', '-product')
 
+class Cart(db.Model, SerializerMixin):
+    __tablename__ = 'Cart'
+    id = db.Column(db.Integer, primary_key=True)
+    cart_total = db.Column(db.Float)
+    user_id = db.Column(db.Integer, db.ForeignKey('User.id'))
 
+    #relationships
+    cart_items = db.relationship('CartItem', backref='cart', cascade='all, delete-orphan')
 
+    #validations
 
+    #serializers
+    serialize_rules = ('-user', '-cart_items')
 
+class CartItem(db.Model, SerializerMixin):
+    __tablename__ = 'CartItem'
+    id = db.Column(db.Integer, primary_key=True)
+    product_quantity = db.Column(db.Integer)
+    cart_id = db.Column(db.Integer, db.ForeignKey('Cart.id'))
+    product_id = db.Column(db.Integer, db.ForeignKey('Product.id'))
 
+    #relationships
 
+    #validations
 
+    #serializers
+    serialize_rules = ('-cart', '-product')
 
+class Order(db.Model, SerializerMixin):
+    __tablename__ = 'Order'
+    id = db.Column(db.Integer, primary_key=True)
+    exp_delivery_date = db.Column(db.DateTime)
+    created_at = db.Column(db.DateTime)
+    delivery_address = db.Column(db.String)
+    user_id = db.Column(db.Integer, db.ForeignKey('User.id'))
+    cart_id = db.Column(db.Integer, db.ForeignKey('Cart.id'))
 
+    #relationships
 
+    #validations
 
-
-
-
-
+    #serializers
+    serialize_rules = ('-user', '-cart')
