@@ -83,11 +83,12 @@ button:focus-visible {
   display: flex;
   align-items: center;
   border: 1px solid #ddd;
-  padding: 15px;
-  margin-bottom: 20px;
+  padding: 5px;
+  margin-bottom: 10px;
   width: 100%; 
   margin: 0 auto; 
   background-color: whitesmoke;
+  max-width: 99%;
 }
 
 .item-image {
@@ -155,11 +156,12 @@ button:focus-visible {
   flex-direction: column;
   align-items: center;
   border: 1px solid #ddd;
-  padding: 15px;
-  margin: 20px auto;
+  padding: 5px;
+  margin: 10px auto;
   width: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: whitesmoke;
+  max-width: 99%;
 }
 
 .farm-container h2 {
@@ -238,4 +240,33 @@ button:focus-visible {
 
 .item-card-container button:hover {
   background-color: #0056b3;
+}
+
+
+
+
+.disp-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 2px solid grey;
+  padding: 5px;
+  /* margin: 20px; */
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: rgb(249, 247, 247);
+  position: relative; 
+}
+
+
+.disp-container button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 2px solid grey;
+  padding: 15px;
+  margin: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: darkolivegreen;
+  position: relative; 
 }

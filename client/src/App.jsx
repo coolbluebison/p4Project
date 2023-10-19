@@ -13,6 +13,8 @@ import './App.css'
 
 import ItemPage from './components/ItemPage'
 import ItemCard from './components/ItemCard'
+import DispContainer from './components/DispContainer'
+import ChoiceMenu from './components/ChoiceMenu'
 
 
 
@@ -23,6 +25,9 @@ function App() {
     <BrowserRouter>
 
       <Routes>
+
+        <Route path="ChoiceMenu" element={<ChoiceMenu />}/>
+        <Route path="DispContainer" element={<DispContainer />}/>
 
         <Route path='ItemPage' element={<ItemPage />}/>
         <Route path='ItemCard' element={<ItemCard />}/>
