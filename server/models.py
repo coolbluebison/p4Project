@@ -1,8 +1,9 @@
-from sqlalchemy.orm import validates, Serializer
+from sqlalchemy.orm import validates
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.associationproxy import association_proxy
+from sqlalchemy.ext.hybrid import hybrid_property
 
-from config import db
+from config import db, bcrypt
 
 
 
@@ -13,7 +14,7 @@ class User(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String)
     email = db.Column(db.String)
-    password = db.Column(db.String)
+    _password_hash = db.Column(db.String)
     user_type = db.Column(db.String)
 
     #relationships
@@ -21,6 +22,21 @@ class User(db.Model, SerializerMixin):
     cart = db.relationship('Cart', uselist=False, backref='user', cascade='all, delete-orphan')
     orders = db.relationship('Order', backref='user', cascade='all, delete-orphan')
 
+    #password stuff
+    @hybrid_property
+    def password_hash(self):
+        return self._password_hash
+    @password_hash.setter
+    def password_hash(self, password):
+        password_hash = bcrypt.generate_password_hash(
+            password.encode('utf-8')
+        )
+        self._password_hash = password_hash.decode('utf-8')
+    def authenticate(self, password):
+        return bcrypt.check_password_hash(
+            self._password_hash,
+            password.encode('utf-8')
+        )
     #validations
 
     #serializers
@@ -37,8 +53,8 @@ class Farmer(db.Model, SerializerMixin):
 
     #validations
 
-    #serializers
-    serialize_rules = ('-products')
+    #serializers - was causing problems, commented it out
+    # serialize_rules = ('-products')
 
 class Product(db.Model, SerializerMixin):
     __tablename__ = 'Product'

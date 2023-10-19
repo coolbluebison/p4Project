@@ -7,22 +7,22 @@ function ItemPage() {
     return (
 
         <>
-            <div class='item-container'>
+            <div className='item-container'>
                 
                 {/* Item image */}
-                <img class = 'item-image' src ='https://www.organicprairie.com/cdn/shop/products/organic-prairie-Ground-Beef-90-10-front-package.webp?v=1686706444'/>
+                <img className = 'item-image' src ='https://www.organicprairie.com/cdn/shop/products/organic-prairie-Ground-Beef-90-10-front-package.webp?v=1686706444'/>
                 
 
-                <div class='item-details'>
-                    <h3 class = 'item-name'>
+                <div className='item-details'>
+                    <h3 className = 'item-name'>
                         Grass Fed Organic Ground Beef (1 lbs)    
                     </h3>
 
-                    <p class = 'item-description'>
+                    <p className = 'item-description'>
                         Deep Woods Organic Ground Beef. 93% fat content. It's the best ground beef you will ever taste in your life
                     </p>
 
-                    <p class = 'item-description'>
+                    <p className = 'item-description'>
                         Sold by Deep Woods Farms
                     </p>
                     
@@ -39,12 +39,12 @@ function ItemPage() {
                     
                 </div>
 
-                <div class='item-price-container'>
+                <div className='item-price-container'>
                     
-                    <h3 class = 'item-price'>Unit Price ($)</h3>
-                    <h3 class = 'item-price'>9.99</h3>
+                    <h3 className = 'item-price'>Unit Price ($)</h3>
+                    <h3 className = 'item-price'>9.99</h3>
                     
-                    <select class="quantity-select">
+                    <select className="quantity-select">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -56,15 +56,15 @@ function ItemPage() {
                         <option value="9">9</option>
                         <option value="10">10</option>
                     </select>
-                    <h3 class = 'item-total'>Total Price</h3>
+                    <h3 className = 'item-total'>Total Price</h3>
 
-                    <button class="add-to-cart-btn">Add to Cart</button>
+                    <button className="add-to-cart-btn">Add to Cart</button>
                 </div>
             
             </div>
 
 
-            <div class = 'farm-container'>
+            <div className = 'farm-container'>
                 <div>
                     <h2 style={{alignContent:'center'}}>Farm Name - Deep Wood Farms</h2> 
                 </div>

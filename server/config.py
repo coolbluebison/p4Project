@@ -23,6 +23,7 @@ app.secret_key = secrets.token_hex(16)
 metadata = MetaData(naming_convention={
     "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
 })
+
 db = SQLAlchemy(metadata=metadata)
 migrate = Migrate(app, db)
 db.init_app(app)
@@ -33,4 +34,4 @@ api = Api(app)
 # Instantiate CORS
 CORS(app)
 
-brcrypt = Bcrypt(app)
+bcrypt = Bcrypt(app)

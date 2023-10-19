@@ -1,22 +1,22 @@
 import React from 'react'
 
 
-function ItemCard() {
+function ItemCard({name, price, category, count, farmer_id}) {
 
     return (
         
-        <div class='item-card-container'>
+        <div className='item-card-container'>
             <h6>
-                Item Name - Deep Wood Ground Beef
+                {name}
             </h6>
             <p>
-                by Farm This
+                {farmer_id}
             </p>
             <div>
                 <img src = 'https://www.organicprairie.com/cdn/shop/products/organic-prairie-Ground-Beef-90-10-front-package.webp?v=1686706444'/>
             </div>
             <p>
-                Price - $9.99
+                {price}
             </p>
             <button>
                 Add to Cart

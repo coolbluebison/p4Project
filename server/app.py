@@ -23,7 +23,7 @@ class Login(Resource):
         password = data['password']
         user = User.query.filter(User.username==username).first()
         if user:
-            if user.authentica(password):
+            if user.authenticate(password):
                 session['user_id'] = user.id
                 return user.to_dict(), 200
             else: 
@@ -48,8 +48,6 @@ class Logout(Resource):
         return {}, 204
 
 api.add_resource(Logout, '/logout')
-
-
 
 @app.route('/')
 def index():
@@ -78,13 +76,13 @@ class UserNorm(Resource):
             new_user = User(   
                 username = user_to_create['username'],
                 email = user_to_create['email'],
-                password = user_to_create['password'],
+                password_hash = user_to_create['password'],
                 user_type = None
             )
 
             db.session.add(new_user)
             db.session.commit()
-            return new_user, 201
+            return new_user.to_dict(), 201
 
         except:
             raise Exception('There was an error while creating the user')
@@ -143,7 +141,7 @@ class FarmerNorm(Resource):
             )
             db.session.add(new_farmer)
             db.session.commit()
-            return new_farmer, 201
+            return new_farmer.to_dict(), 201
         except:
             raise Exception('Error while creating the farmer')
 
@@ -408,8 +406,67 @@ class OrderById(Resource):
 api.add_resource(OrderById, '/order_table/<int:id>')
 
 
+# Order routes 
+
+class ProductNorm(Resource):
+
+    def get(self):
+        products = Product.query.all()
+        data = [product.to_dict() for product in products]
+        return data, 200
+
+    def post(self):
+        product_data = request.get_json()
+        try:
+            new_product = Product(
+                name = product_data['name'],
+                price = product_data['price'],
+                category = product_data['category'],
+                count = product_data['count'],
+                farmer_id = product_data['farmer_id']     )
+            db.session.add(new_product)
+            db.session.commit()
+            return new_product.to_dict(), 201
+        except:
+            raise Exception('Error while creating the product')
+
+api.add_resource(ProductNorm, '/product_table')
+
+class ProductById(Resource):
+
+    def get(self, id):
+        product = Product.query.filter_by(id=id).first()
+        if product:
+            return product.to_dict(), 200
+        else:
+            return {'error': 'The product does not exist'}, 404
+
+    def patch(self, id):
+        data_to_patch = request.get_json()
+        product = Product.query.filter_by(id=id).first()
+        if product:
+            for field in data_to_patch:
+                setattr(product, field, data_to_patch[field])
+            db.session.commit()
+            return product.to_dict(), 200
+        else:
+            return {'error': 'The product does not exist'}, 404
+
+    def delete(self, id):
+        product = Product.query.filter_by(id=id).first()
+        if product:
+            db.session.delete(product)
+            db.session.commit()
+            return {}, 202
+        else:
+            return {'error': 'The product does not exist'}, 404
+
+api.add_resource(ProductById, '/product_table/<int:id>')
+
+
+
 if __name__ == '__main__':
-    app.run(port=5555, debug=True)
+    app.run(port=5000, debug=True)
 
 
 

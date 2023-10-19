@@ -8,7 +8,7 @@ function DispContainer() {
 
     return (
 
-        <div class='disp-container'>
+        <div className='disp-container'>
 
             <ChoiceMenu />
             <ItemCard />
