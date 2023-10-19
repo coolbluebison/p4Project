@@ -23,7 +23,7 @@ class Login(Resource):
         password = data['password']
         user = User.query.filter(User.username==username).first()
         if user:
-            if user.authentica(password):
+            if user.authenticate(password):
                 session['user_id'] = user.id
                 return user.to_dict(), 200
             else: 
@@ -78,13 +78,13 @@ class UserNorm(Resource):
             new_user = User(   
                 username = user_to_create['username'],
                 email = user_to_create['email'],
-                password = user_to_create['password'],
+                password_hash = user_to_create['password'],
                 user_type = None
             )
 
             db.session.add(new_user)
             db.session.commit()
-            return new_user, 201
+            return new_user.to_dict(), 201
 
         except:
             raise Exception('There was an error while creating the user')
@@ -409,7 +409,7 @@ api.add_resource(OrderById, '/order_table/<int:id>')
 
 
 if __name__ == '__main__':
-    app.run(port=5555, debug=True)
+    app.run(port=5000, debug=True)
 
 
 
