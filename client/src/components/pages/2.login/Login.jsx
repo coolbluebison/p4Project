@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-function Login() {
+function Login({setCurrentUser}) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -28,6 +28,7 @@ function Login() {
       })
       .then(data => {
         console.log(data);
+        setCurrentUser(data);
         nav("/");
       })
       .catch(error => {

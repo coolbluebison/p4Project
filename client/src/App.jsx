@@ -17,14 +17,14 @@ import Signup from './components/pages/3.signup/Signup'
 
 
 function App() {
-  // const [users, setCurrentUser] = useState({})
+  const [user, setCurrentUser] = useState({})
   
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path='/' element={<RootLayout/>}>
+      <Route path='/' element={<RootLayout user={user}/>}>
         <Route index element={<Home/>}/>
-        <Route path='/login' element={<Login />}/>
-        <Route path='/signup' element={<Signup />}/>
+        <Route path='/login' element={<Login setCurrentUser={setCurrentUser}/>}/>
+        <Route path='/signup' element={<Signup setCurrentUser={setCurrentUser}/>}/>
         {/* <Route path='/dashboard' element={<Dashboard/>}/> */}
         {/* <Route path='/contact' element={<Contact />} /> */}
         {/* <Route path='/profile' element={<Profile currentUser={currentUser}/>} /> */}

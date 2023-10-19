@@ -2,8 +2,8 @@ import { useFormik } from 'formik';
 import { useNavigate } from "react-router-dom";
 import * as Yup from 'yup';
 
-const Signup = () => {
-    console.log('signup')
+const Signup = ({setCurrentUser}) => {
+    // console.log('signup')
     const nav = useNavigate();
     const formik = useFormik({
         initialValues: {
@@ -15,12 +15,12 @@ const Signup = () => {
             email: Yup.string().required('Required').email('Invalid email address'),
             username: Yup.string().required('Required'),
             password: Yup.string().required('Required')
-                .min(8, 'Username should be over 7 characters long')
-                .matches(/[a-zA-Z]/, 'Password must contain at least one letter.')
-                .matches(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/, 'Password must contain at least one special character.'),
+                .min(3, 'Password should be over 7 characters long')
+                // .matches(/[a-zA-Z]/, 'Password must contain at least one letter.')
+                // .matches(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/, 'Password must contain at least one special character.'),
         }),
         onSubmit: values => {
-            // console.log('Form data', values);
+            console.log('Form data', values);
 
             const userObject = {
                 "email": values.email,
@@ -44,6 +44,8 @@ const Signup = () => {
                 })
                 .then(data => {
                     console.log(data);
+                    setCurrentUser(data);
+                    nav("/");
                 })
                 .catch(error => {
                     console.log("error", error.message);
@@ -54,7 +56,7 @@ const Signup = () => {
     return (
         <form onSubmit={(e) => {
             formik.handleSubmit(e);
-            nav("/");
+            // nav("/");
         }}>
             <div className="input-group">
                 <label>Email</label>

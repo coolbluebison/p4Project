@@ -2,7 +2,7 @@ import { React} from 'react'
 import { NavLink } from 'react-router-dom'
 import'../header/NavBar.css'
 
-function NavBar() {
+function NavBar({user}) {
 
   const loggedOutNavBar = (
     <header>
@@ -24,7 +24,8 @@ function NavBar() {
     </header>
   )
   // return user.username ? loggedInNavBar : loggedOutNavBar
-  return loggedOutNavBar
+  console.log(user)
+  return user.username != undefined? loggedInNavBar : loggedOutNavBar
 
 }
 
