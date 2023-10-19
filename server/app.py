@@ -49,8 +49,6 @@ class Logout(Resource):
 
 api.add_resource(Logout, '/logout')
 
-
-
 @app.route('/')
 def index():
     return '<h1>Project Server</h1>'
