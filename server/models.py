@@ -53,8 +53,8 @@ class Farmer(db.Model, SerializerMixin):
 
     #validations
 
-    #serializers
-    serialize_rules = ('-products')
+    #serializers - was causing problems, commented it out
+    # serialize_rules = ('-products')
 
 class Product(db.Model, SerializerMixin):
     __tablename__ = 'Product'
