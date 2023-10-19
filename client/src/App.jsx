@@ -15,6 +15,8 @@ import ItemPage from './components/ItemPage'
 import ItemCard from './components/ItemCard'
 import DispContainer from './components/DispContainer'
 import ChoiceMenu from './components/ChoiceMenu'
+import Banner from './components/Banner'
+import HomeContainer from './components/HomeContainer'
 
 
 
@@ -22,15 +24,20 @@ function App() {
   const [count, setCount] = useState(0)
   
   return (  
+    
     <BrowserRouter>
 
       <Routes>
 
-        <Route path="ChoiceMenu" element={<ChoiceMenu />}/>
-        <Route path="DispContainer" element={<DispContainer />}/>
+        <Route path="home" element={<HomeContainer />}/>
 
-        <Route path='ItemPage' element={<ItemPage />}/>
-        <Route path='ItemCard' element={<ItemCard />}/>
+
+        <Route path="banner" element={<Banner />}/>
+        <Route path="choice-menu" element={<ChoiceMenu />}/>
+        <Route path="disp-container" element={<DispContainer />}/>
+
+        <Route path='item-page' element={<ItemPage />}/>
+        <Route path='item-card' element={<ItemCard />}/>
 
       </Routes> 
     

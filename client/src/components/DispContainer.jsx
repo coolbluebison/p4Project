@@ -13,13 +13,9 @@ function DispContainer() {
             <ChoiceMenu />
             <ItemCard />
             <ItemPage />
-
-        
+    
         </div>
-
     )
-
-
 }
 
 export default DispContainer;
