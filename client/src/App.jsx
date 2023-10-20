@@ -1,39 +1,62 @@
 import { useState, useEffect } from 'react'
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  RouterProvider,
-  Route
-} from "react-router-dom"
-// import './App.css'
-import RootLayout from './components/RootLayout'
-import NavBar from './components/header/NavBar'
-import Home from './components/pages/1.home/Home'
-import Login from './components/pages/2.login/Login'
-import Signup from './components/pages/3.signup/Signup'
-// import Contact from './components/pages/4.contact/Contact'
-// import Footer from './components/components/footer/Footer'
-// import Profile from './components/pages/5.profile/Profile'
-                                                                                                                                                             
+import {BrowserRouter, Routes, Route, NavLink} from 'react-router-dom'
+import './App.css'
+// import NavBar from './components/header/NavBar'
+// import Home from './pages/1.home/Home'
+// import Login from './pages/2.login/Login'
+// import SignUp from './pages/3.signup/SignUp'
+// import Contact from './pages/4.contact/Contact'
+// import Footer from './components/footer/Footer'
+// import Profile from './pages/5.profile/Profile'
+
+// Additional imports
+
+import ItemPage from './components/ItemPage'
+import ItemCard from './components/ItemCard'
+import DispContainer from './components/DispContainer'
+import ChoiceMenu from './components/ChoiceMenu'
+import Banner from './components/Banner'
+import HomeContainer from './components/HomeContainer'
+import Login from './components/Login'
+import Signup from './components/Signup'
+
+
 
 function App() {
-  const [user, setCurrentUser] = useState({})
+  // const [user, setUser] = useState({})
   
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <Route path='/' element={<RootLayout setCurrentUser={setCurrentUser} user={user}/>}>
-        <Route index element={<Home/>}/>
-        <Route path='/login' element={<Login setCurrentUser={setCurrentUser}/>}/>
-        <Route path='/signup' element={<Signup setCurrentUser={setCurrentUser}/>}/>
-        {/* <Route path='/dashboard' element={<Dashboard/>}/> */}
-        {/* <Route path='/contact' element={<Contact />} /> */}
-        {/* <Route path='/profile' element={<Profile currentUser={currentUser}/>} /> */}
-      </Route>
-    )
-  );
+  return (  
+    
+    <BrowserRouter>
 
-  return <RouterProvider router = {router}/>
+      <nav className="nav">
+        {/* <NavLink to="OperatingAssumptions" activeclassname="active">Sign Up</NavLink> */}
+        <NavLink to="Login" activeclassname="active">Login</NavLink>
+        <NavLink to="" activeclassname="active">Home</NavLink>
+      </nav>
+
+
+      <Routes>
+
+
+        <Route path="" element={<HomeContainer />}/>
+
+        <Route path="login" element={<Login />}/>
+        <Route path="signup" element={<Signup />}/>
+
+
+        <Route path="banner" element={<Banner />}/>
+        <Route path="choice-menu" element={<ChoiceMenu />}/>
+        <Route path="disp-container" element={<DispContainer />}/>
+
+        <Route path='item-page' element={<ItemPage />}/>
+        <Route path='item-card' element={<ItemCard />}/>
+
+      </Routes> 
+    
+    </BrowserRouter>
+  )
 }
   
-  export default App
+export default App
   
