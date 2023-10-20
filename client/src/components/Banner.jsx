@@ -7,8 +7,8 @@ function Banner(){
 
     return (
         <div className='banner-container' style={{ backgroundImage: `url(${cofarm})` }}>
-            <h3>Are you tired of not being able to trust your food?</h3>
-            <h5>So were we. That's why created Fresh Farm</h5>
+            <h1>Are you tired of not being able to trust your food?</h1>
+            <h2>So were we. That's why created Fresh Farm</h2>
         </div>
 
     )
