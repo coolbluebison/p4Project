@@ -1,6 +1,5 @@
 * {
   margin: 0;
-  padding: 0;
 }
 
 :root {
@@ -9,16 +8,14 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(199, 212, 217, 0.99);
-  background-color: ghostwhite;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-  height:100%;
-  width:100%;
 }
 
 a {
@@ -30,13 +27,14 @@ a:hover {
   color: #535bf2;
 }
 
-/* body {
+body {
   margin: 0;
   display: flex;
-  place-items: center;
-  min-width: 1200px;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  min-width: 320px;
   min-height: 100vh;
-} */
+}
 
 h1 {
   font-size: 3.2em;
@@ -74,318 +72,3 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
-
-.nav {
-  background-color: #A8C588; /* Light pastel olive green */
-  display: flex;
-  justify-content: flex-end; /* Aligns the links to the right */
-  align-items: center; /* Centers the links vertically */
-  width: 100%; /* Takes up the full width */
-  padding: 1rem 2rem; /* Space around */
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Shadow for depth */
-  border: 1px solid #8EA76A; /* Slight border for added definition */
-  background-image: linear-gradient(to bottom, #A8C588, #8EA76A); /* Adds a gradient for depth */
-}
-
-.nav a {
-  color: #444; /* Dark text color for light background */
-  text-decoration: none; /* No underline */
-  margin-left: 1.5rem; /* Increased space between each link */
-  padding: 0.5rem 1.5rem; /* Increased horizontal padding for the oval effect */
-  border: 1px solid #7C9F5B; /* Pastel olive green border */
-  background-color: #8EA76A; /* Slightly darker background for each link */
-  border-radius: 20px; /* Oval shape */
-  transition: all 0.2s ease; /* Smooth transition for hover effect */
-}
-
-.nav a:hover {
-  background-color: rgba(255, 255, 255, 0.1); /* Slight white tint for hover effect */
-  border-color: #7C9F5B; /* Pastel olive green border for hover effect */
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Slight shadow for depth on hover */
-}
-
-.nav a.active {
-  border-bottom: 2px solid #444; /* Dark underline for active state */
-}
-
-
-
-
-
-
-/* Actual file */
-
-
-
-.item-container {
-  display: flex;
-  align-items: center;
-  border: 1px solid #ddd;
-  padding: 5px;
-  margin-bottom: 10px;
-  width: 100%; 
-  margin: 0 auto; 
-  background-color: whitesmoke;
-  max-width: 99%;
-}
-
-.item-image {
-  width: 200px;
-  height: 200px;
-  margin-right: 15px;
-  object-fit: cover; /* for image scaling */
-}
-
-.item-details {
-  flex-grow: 1;
-  align-items: left;
-  color: darkolivegreen;
-}
-
-.item-name {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.item-description {
-  margin-bottom: 10px;
-}
-
-
-.item-price-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  padding: 15px;
-  color: darkkhaki;
-  border: 0.5px solid black;
-}
-
-.item-price, .item-total {
-  font-weight: bold;
-  padding: 2px;
-}
-
-.quantity-select {
-  margin: 10px 0;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-
-.add-to-cart-btn {
-  background-color: black;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.add-to-cart-btn:hover {
-  background-color: #0056b3;
-}
-
-/* farm in banner container */
-
-.farm-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid #ddd;
-  padding: 5px;
-  margin: 10px auto;
-  width: 100%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: whitesmoke;
-  max-width: 99%;
-}
-
-.farm-container h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 20px;
-  color: #333;
-}
-
-.farm-container img {
-  width: 100%;  /* Fills the width of the container */
-  height: 400px;
-  object-fit: cover;  
-  margin-bottom: 20px;
-}
-
-.farm-container p {
-  text-align: center;
-  color: #666;
-  max-width: 75%;  /* This limits the width of the paragraph for readability */
-  margin: 0 auto;  
-}
-
-
-.item-card-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid grey;
-  padding: 10px;
-  margin: 10px;
-  width: 250px;
-  height: 300px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: whitesmoke;
-  position: relative; 
-}
-
-.item-card-container h6 {
-  color: black;
-  margin: 1px;
-  text-align: center;
-  font-size: 14px; /* Reduced font size */
-  max-width: 90%;
-}
-
-.item-card-container p {
-  color: black;
-  text-align: center;
-  font-size: 10px; /* Reduced font size */
-  max-width: 80%;
-  margin: 1px;
-}
-
-.item-card-container img {
-  width: 100%;
-  height: 60%;
-  margin-bottom: 1px;
-  object-fit: cover;
-}
-
-.item-card-container button {
-  width: 80%;
-  padding: 3px 0; /* Reduced padding */
-  text-align: center;
-  border: none;
-  border-radius: 1px;
-  background-color: #007bff;
-  color: #fff;
-  font-size: 12px; /* Reduced font size */
-  cursor: pointer;
-  transition: background-color 0.3s;
-  position: absolute; /* Absolute position for the button */
-  bottom: 5px; /* Keep the button at the bottom */
-}
-
-.item-card-container button:hover {
-  background-color: #0056b3;
-}
-
-
-
-.disp-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;           /* Allows wrapping of child elements */
-  align-items: center;
-  justify-content: flex-start; /* Aligns items to the start. Can use 'space-between' if you want them to spread out */
-  border: 2px solid grey;
-  padding: 5px;
-  width: 1275px;            /* Adjust width to fit 5 items side by side */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: rgb(249, 247, 247);
-  position: relative; 
-  align-content: center;
-}
-
-.disp-container button {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  border: 0.5px solid grey;
-  padding: 15px;
-  margin: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: darkolivegreen;
-  position: relative; 
-}
-
-
-
-.category-button {
-  width: 100px; /* Adjust as necessary */
-  height: 100px; /* Adjust as necessary */
-  margin-left: 25px;
-  margin-right: 25px;
-  border-radius: 15px; /* This gives the rounded edges */
-  overflow: hidden; /* To make sure everything stays within rounded edges */
-  position: relative; /* To absolutely position the label inside it */
-  cursor: pointer; /* To give a click indication */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for a lifted effect */
-}
-
-.category-button img {
-  width: 100%;
-  height: 75%; /* Covering top 3/4 of the button */
-  display: block;
-  object-fit: cover; /* Ensures the image covers the area without stretching */
-}
-
-.category-label {
-  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black. Adjust color as needed */
-  color: #fff; /* White text. Adjust as needed */
-  text-align: center;
-  line-height: 25px; /* Adjust based on your desired label height */
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 25%; /* Covering bottom 1/4 of the button */
-}
-
-
-.sub-choices {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  border: 2px solid grey;
-  padding: 5px;
-  /* margin: 20px; */
-  width: 100%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: rgb(249, 247, 247);
-  position: relative;
-  align-content: center;
-}
-
-.banner-container{
-  display: flex;
-  flex-direction: row;
-  width: 1200px;
-  height: 800px;
-  position: relative;
-  align-content: center;
-  align-content: middle;
-}
-
-.banner-container h3, .banner-container h5 {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adds a shadow to the text */
-}
-
-
-
-/* Home page container */
-
-.home-container {
-  /* display: flex; */
-  width: 1200px;
-  height: 100%;
-  border: 0.1px solid whitesmoke;
-}
-
-.home-container > * {
-  width: 100%;
-  /* flex: 5;                 /* All children take up equal amount of space */
-  /* min-width: 0; */ 
-}
-
