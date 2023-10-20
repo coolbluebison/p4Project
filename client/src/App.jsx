@@ -19,29 +19,33 @@ import Banner from './components/Banner'
 import HomeContainer from './components/HomeContainer'
 import Login from './components/Login'
 import Signup from './components/Signup'
+import NavBar from './components/NavBar'
+import AboutUs from './components/AboutUs'
 
 
 
 function App() {
-  // const [user, setUser] = useState({})
+  const [currentUser, setCurrentUser] = useState(null)
   
   return (  
     
     <BrowserRouter>
 
-      <nav className="nav">
+      {/* <nav className="nav"> */}
         {/* <NavLink to="OperatingAssumptions" activeclassname="active">Sign Up</NavLink> */}
-        <NavLink to="Login" activeclassname="active">Login</NavLink>
-        <NavLink to="" activeclassname="active">Home</NavLink>
-      </nav>
+        {/* <NavLink to="Login" activeclassname="active">Login</NavLink> */}
+        {/* <NavLink to="" activeclassname="active">Home</NavLink> */}
+      {/* </nav> */}
 
+
+      <NavBar currentUser={currentUser} />
 
       <Routes>
 
 
         <Route path="" element={<HomeContainer />}/>
 
-        <Route path="login" element={<Login />}/>
+        <Route path="login" element={<Login setCurrentUser={setCurrentUser}/>}/>
         <Route path="signup" element={<Signup />}/>
 
 
@@ -51,6 +55,7 @@ function App() {
 
         <Route path='item-page' element={<ItemPage />}/>
         <Route path='item-card' element={<ItemCard />}/>
+        <Route path='about-us' element={<AboutUs />}/>
 
       </Routes> 
     

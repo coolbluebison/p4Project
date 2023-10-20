@@ -241,7 +241,7 @@ button:focus-visible {
 
 .item-card-container h6 {
   color: black;
-  margin: 1px;
+  margin: 0px;
   text-align: center;
   font-size: 14px; /* Reduced font size */
   max-width: 90%;
@@ -252,19 +252,19 @@ button:focus-visible {
   text-align: center;
   font-size: 10px; /* Reduced font size */
   max-width: 80%;
-  margin: 1px;
+  margin: 0px;
 }
 
 .item-card-container img {
   width: 100%;
   height: 60%;
-  margin-bottom: 1px;
+  margin-bottom: 0px;
   object-fit: cover;
 }
 
 .item-card-container button {
   width: 80%;
-  padding: 3px 0; /* Reduced padding */
+  padding: 0px; /* Reduced padding */
   text-align: center;
   border: none;
   border-radius: 1px;
@@ -274,7 +274,7 @@ button:focus-visible {
   cursor: pointer;
   transition: background-color 0.3s;
   position: absolute; /* Absolute position for the button */
-  bottom: 5px; /* Keep the button at the bottom */
+  bottom: 10px; /* Keep the button at the bottom */
 }
 
 .item-card-container button:hover {
@@ -376,16 +376,15 @@ button:focus-visible {
 
 /* Home page container */
 
-.home-container {
-  /* display: flex; */
+/* .home-container {
+  display: flex;
   width: 1200px;
   height: 100%;
   border: 0.1px solid whitesmoke;
-}
+} 
 
 .home-container > * {
-  width: 100%;
-  /* flex: 5;                 /* All children take up equal amount of space */
-  /* min-width: 0; */ 
-}
-
+  width: 100%; 
+  flex: 1;                 
+  min-width: 0; 
+} */

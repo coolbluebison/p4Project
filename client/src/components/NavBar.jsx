@@ -2,12 +2,13 @@ import { React} from 'react'
 import { NavLink } from 'react-router-dom'
 import './NavBar.css'
 
-function NavBar() {
+function NavBar({currentUser}) {
 
   const loggedOutNavBar = (
     <header>
       <nav>
-        <NavLink to="/">About Us</NavLink>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/about-us">About Us</NavLink>
         <NavLink to="/signup">Sign Up</NavLink>
         <NavLink to="/login">Log In</NavLink>
         <NavLink to="/">Cart</NavLink>
@@ -17,18 +18,19 @@ function NavBar() {
   const loggedInNavBar = (
     <header>
       <nav>
-        <NavLink to="/">About Us</NavLink>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/about-us">About Us</NavLink>
         <NavLink to="/login">Log Out</NavLink>
         <NavLink to="/">Cart</NavLink>
       </nav>
     </header>
   )
-  // return user.username ? loggedInNavBar : loggedOutNavBar
+  // return currentUser.username ? loggedInNavBar : loggedOutNavBar
   // console.log(user)
-  // return user.username != undefined? loggedInNavBar : loggedOutNavBar
+  // 
 
   return (
-    loggedOutNavBar
+    currentUser && currentUser['username'] !== undefined ? loggedInNavBar : loggedOutNavBar
   )
 
 }
