@@ -33,14 +33,15 @@ def create_farmer():
         farmers.append(f)
     return farmers
 
-CATEGORY = ['Beef', 'Dairy', 'Plant-based']
+CATEGORY = ['Beef', 'Poultry', 'Plant-Based Meat', 'Pork', 'Seafood', 'Milk', 'Cheese', 'Plant-Based-Milk', 'Yoghurt', 'Fruits', 'Vegetables', 'Other', 'Eggs', 'Bakery', 'Olive Oil', 'Condiments', 'Snacks']
 def create_products(farmers):
     products = []
-    for _ in range(15):
+    for _ in range(50):
         p = Product(
             name = fake.name(),
             price = randint(1, 15),
-            category = rc(CATEGORY), 
+            category = rc(CATEGORY),
+            image_src = fake.name() 
         )
         products.append(p)
     return products

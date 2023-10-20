@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-function ItemCard({name, price, category, count, farmer_id}) {
+function ItemCard({name, price, category, count, farmer_id, image_src}) {
 
     return (
         
@@ -13,7 +13,7 @@ function ItemCard({name, price, category, count, farmer_id}) {
                 {farmer_id}
             </p>
             <div>
-                <img src = 'https://www.organicprairie.com/cdn/shop/products/organic-prairie-Ground-Beef-90-10-front-package.webp?v=1686706444'/>
+                <img src= {image_src} />
             </div>
             <p>
                 {price}
