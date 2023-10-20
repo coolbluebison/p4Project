@@ -22,7 +22,7 @@ function HomeContainer() {
 
         <div className='home-container'>
 
-            <NavBar />
+            {/* <NavBar /> */}
             <Banner />
             <ChoiceMenu choice={choice} setChoice={setChoice}/>
             <ItemsContainer data={data} choice={choice}/>

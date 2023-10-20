@@ -36,27 +36,27 @@ function ChoiceMenu({choice, setChoice}) {
                     <div className = 'sub-choices' id='meat-choices'>
                         <div className="category-button" onClick={(e)=>setChoice("Beef")}>
                             <img src="https://embed.widencdn.net/img/beef/hmla7wxlvl/1120x1120px/Beef_Lifestyle_190716_0868.tif?keep=c&u=7fueml" alt="Beef"/>
-                            <div class="category-label">Beef</div>
+                            <div className="category-label">Beef</div>
                         </div>
 
                         <div className="category-button" onClick={(e)=>setChoice("Poultry")} >
                             <img src="https://food.fnr.sndimg.com/content/dam/images/food/fullset/2009/12/13/1/FNM_011009-W-N-Dinners-027_s4x3.jpg.rend.hgtvcom.616.462.suffix/1382539273224.jpeg" alt="Poultry"/>
-                            <div class="category-label">Poultry</div>
+                            <div className="category-label">Poultry</div>
                         </div>
 
                         <div className="category-button" onClick={(e)=>setChoice("Plant-Based Meat ")}>
                             <img src="https://cdn.cleaneatingmag.com/wp-content/uploads/2021/06/MeatSubsititute_Square-Recovered.jpg?width=730" alt="Plant-Based Meat"/>
-                            <div class="category-label">Plant-Based Meat</div>
+                            <div className="category-label">Plant-Based Meat</div>
                         </div>
 
                         <div className="category-button" onClick={(e)=>setChoice("Pork")}>
                             <img src="https://assets.bonappetit.com/photos/5c004e76037f9b5d60b6ca3d/1:1/w_2560%2Cc_limit/bone-in-pork-loin.jpg" alt="Pork"/>
-                            <div class="category-label">Pork</div>
+                            <div className="category-label">Pork</div>
                         </div>
 
                         <div className="category-button" onClick={(e)=>setChoice("Seafood")}>
                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3xLudWs2ucaYDxYuFmiPQG9aTM8QLv0QhjQ&usqp=CAU" alt="Seafood"/>
-                            <div class="category-label">Seafood</div>
+                            <div className="category-label">Seafood</div>
                         </div>
 
                     </div> : null
@@ -66,7 +66,7 @@ function ChoiceMenu({choice, setChoice}) {
                 <div className = 'sub-choices' id='dairy-choices'>
                     <div className="category-button" onClick={(e)=>setChoice("Milk")}>
                         <img src="https://cdn.store-factory.com/www.culinaide.com/content/product_4801045b.jpg?v=1597660182" alt="Milk"/>
-                        <div class="category-label">Milk</div>
+                        <div className="category-label">Milk</div>
                     </div>
 
                     <div className="category-button" onClick={(e)=>setChoice("Cheese")}>
