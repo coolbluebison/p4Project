@@ -63,6 +63,8 @@ class Product(db.Model, SerializerMixin):
     price = db.Column(db.Float)
     category = db.Column(db.String)
     count = db.Column(db.Integer)
+    image_src = db.Column(db.String)
+    # farmer_name = db.Column(db.Integer, db.ForeignKey('Farmer.name'))
     farmer_id = db.Column(db.Integer, db.ForeignKey('Farmer.id'))
 
     #relationships

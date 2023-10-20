@@ -410,6 +410,19 @@ api.add_resource(OrderById, '/order_table/<int:id>')
 
 class ProductNorm(Resource):
 
+    # def get(self):
+    # # Join Product with Farmer based on farmer_id
+    #     products_with_farmers = db.session.query(Product, Farmer).join(Farmer, Product.farmer_id == Farmer.id).all()
+
+    #     data = []
+    #     for product, farmer in products_with_farmers:
+    #         product_data = product.to_dict()
+    #         product_data['farmer_name'] = farmer.name
+    #         data.append(product_data)
+
+    #     return data, 200
+
+
     def get(self):
         products = Product.query.all()
         data = [product.to_dict() for product in products]
@@ -423,6 +436,7 @@ class ProductNorm(Resource):
                 price = product_data['price'],
                 category = product_data['category'],
                 count = product_data['count'],
+                image_src = product_data['image_src'],
                 farmer_id = product_data['farmer_id']     )
             db.session.add(new_product)
             db.session.commit()

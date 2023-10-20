@@ -12,7 +12,7 @@ function ItemsContainer({data, choice})  {
         <div className='disp-container'>
 
             {
-                filtered_data.map( item => (<ItemCard key={item.id} name={item.name} price={item.price} category={item.category} count={item.count} farmer_id={item.farmer_id}/> )
+                filtered_data.map( item => (<ItemCard key={item.id} name={item.name} price={item.price} category={item.category} count={item.count} farmer_id={item.farmer_id} image_src={item.image_src}/> )
                 )
             }
 
