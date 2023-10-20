@@ -18,6 +18,7 @@ import ChoiceMenu from './components/ChoiceMenu'
 import Banner from './components/Banner'
 import HomeContainer from './components/HomeContainer'
 import Login from './components/Login'
+import Signup from './components/Signup'
 
 
 
@@ -41,6 +42,7 @@ function App() {
         <Route path="" element={<HomeContainer />}/>
 
         <Route path="login" element={<Login />}/>
+        <Route path="signup" element={<Signup />}/>
 
 
         <Route path="banner" element={<Banner />}/>
