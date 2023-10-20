@@ -2,15 +2,20 @@ import { React} from 'react'
 import { NavLink } from 'react-router-dom'
 import'../header/NavBar.css'
 
-function NavBar({user}) {
-
+function NavBar({user, setCurrentUser}) {
+  function handleLogout(){
+    fetch('/api/logout', {
+      method: 'DELETE',
+    })
+    setCurrentUser({})
+  }
   const loggedOutNavBar = (
     <header>
       <nav>
         <NavLink to="/">About Us</NavLink>
         <NavLink to="/signup">Sign Up</NavLink>
         <NavLink to="/login">Log In</NavLink>
-        <NavLink to="/">Cart</NavLink>
+        <NavLink to="/cart">Cart</NavLink>
       </nav>
     </header>
   )
@@ -18,12 +23,11 @@ function NavBar({user}) {
     <header>
       <nav>
         <NavLink to="/">About Us</NavLink>
-        <NavLink to="/login">Log Out</NavLink>
-        <NavLink to="/">Cart</NavLink>
+        <NavLink onClick={handleLogout} to="/">Log Out</NavLink>
+        <NavLink to="/cart">Cart</NavLink>
       </nav>
     </header>
   )
-  // return user.username ? loggedInNavBar : loggedOutNavBar
   console.log(user)
   return user.username != undefined? loggedInNavBar : loggedOutNavBar
 

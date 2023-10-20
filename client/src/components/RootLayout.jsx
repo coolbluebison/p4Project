@@ -2,11 +2,11 @@ import { Outlet } from 'react-router-dom';
 import NavBar from '../components/header/NavBar';
 
 
-export default function RootLayout({user}) {
+export default function RootLayout({user, setCurrentUser}) {
     return (
         <div>
             <header>
-                <NavBar user={user}/>
+                <NavBar setCurrentUser={setCurrentUser} user={user}/>
             </header>
             <main>
                 <Outlet />

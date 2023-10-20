@@ -14,14 +14,14 @@ import Signup from './components/pages/3.signup/Signup'
 // import Contact from './components/pages/4.contact/Contact'
 // import Footer from './components/components/footer/Footer'
 // import Profile from './components/pages/5.profile/Profile'
-
+                                                                                                                                                             
 
 function App() {
   const [user, setCurrentUser] = useState({})
   
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path='/' element={<RootLayout user={user}/>}>
+      <Route path='/' element={<RootLayout setCurrentUser={setCurrentUser} user={user}/>}>
         <Route index element={<Home/>}/>
         <Route path='/login' element={<Login setCurrentUser={setCurrentUser}/>}/>
         <Route path='/signup' element={<Signup setCurrentUser={setCurrentUser}/>}/>
