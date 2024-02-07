@@ -1,5 +1,5 @@
 import React from 'react'
-import cofarm from '/home/kaspr/Development/code/phase-4/p4Project/client/src/assets/cofarm.png'
+import cofarm from '/home/kaspr/Development/Phase/4/p4Project/client/src/assets/cofarm.png'
 
 
 

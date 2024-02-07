@@ -46,7 +46,7 @@ function App() {
         <Route path="" element={<HomeContainer />}/>
 
         <Route path="login" element={<Login setCurrentUser={setCurrentUser}/>}/>
-        <Route path="signup" element={<Signup />}/>
+        <Route path="signup" element={<Signup setCurrentUser={setCurrentUser}/>}/>
 
 
         <Route path="banner" element={<Banner />}/>
